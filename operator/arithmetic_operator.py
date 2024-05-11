@@ -4,7 +4,7 @@ b = 20
 print(a + b)  # 加法
 print(a - b)  # 减法
 print(a * b)  # 乘法
-print(a / b)  # 除法
+print(a / b)  # 除法 保留一位小数
 print(a // b)  # 取整
 print(a % b)  # 取余
 print(a**b)  # 10的20次方

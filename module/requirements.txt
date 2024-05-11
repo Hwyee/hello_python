@@ -1,0 +1,4 @@
+# requirements.txt
+# 引入自己的包
+# -e .
+# 引入第三方包
