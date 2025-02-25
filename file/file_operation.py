@@ -11,14 +11,15 @@ f.write("hello nil")
 f.close()
 #  读取文件 文件不存在抛出异常
 # f = open("test1.txt", "r") # FileNotFoundError: [Errno 2] No such file or directory: 'test1.txt'
-f = open(p + "/test.txt", "r")
+f = open(p + "/test.txt", "r", encoding = "utf-8")
 print(f.read(5))
 print(f.readline())
 f.close()
-f = open(p + "/test.txt", "r")
+f = open(p + "/test.txt", "r", encoding = "utf-8")
 print(f.readlines())
 f.close()
 
+# 文件模式说明
 """
 文件mode：
 r: 只读
@@ -35,5 +36,5 @@ t:文本 (默认)
 """
 
 # with语句 会自动关闭文件
-with open(p + "/test.txt", "r") as f:  # 读
+with open(p + "/test.txt", "r", encoding = "utf-8") as f:  # 读
     print(f.read())

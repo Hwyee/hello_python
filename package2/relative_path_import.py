@@ -1,4 +1,12 @@
 # from ..package import pkg_module
+import sys
+import os
+# 添加项目根目录到 sys.path
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+print(project_root)
+if project_root not in sys.path:
+    sys.path.append(project_root)
+from package import pkg_module
 
 # print(pkg_module.add(1, 2)) # ImportError: attempted relative import with no known parent package
 
@@ -11,13 +19,13 @@ print(__name__)  # __main__
 注意，相对导入基于当前模块名。因为主模块名永远是 "__main__" ，
 所以如果计划将一个模块用作 Python 应用程序的主模块，那么该模块内的导入语句必须始终使用绝对导入。
 """
-import sys
 
 print(sys.path)
 print(__name__)  # __main__
 """
 
-__main__ 是顶层代码运行环境的名称。“顶层代码”是指由用户指定的最先开始运行的那一个 Python 模块。之所以它是“顶层”，是因为它将导入程序所需的所有其它模块。有时“顶层代码”被称为应用程序的 入口点。
+__main__ 是顶层代码运行环境的名称。“顶层代码”是指由用户指定的最先开始运行的那一个 Python 模块。之所以它是“顶层”，
+是因为它将导入程序所需的所有其它模块。有时“顶层代码”被称为应用程序的 入口点。
 
 顶层代码环境可以是：
 
@@ -53,7 +61,6 @@ Explicit is better than implicit.
 上述每种情况中的顶层模块的 __name__ 被设为 '__main__'。
 """
 
-from ..package import pkg_module
 
 
 def test() -> None:
