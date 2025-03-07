@@ -1,24 +1,26 @@
 # from ..package import pkg_module
 import sys
 import os
-# 添加项目根目录到 sys.path
+# 添加项目根目录到 sys.path 文件执行的路径会自动添加到os.path中，直接执行此文件，路径就是 /xxx/hello_python/package2，所以from package是找不到的需要from ..package
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-print(project_root)
+print(sys.path)
 if project_root not in sys.path:
     sys.path.append(project_root)
 from package import pkg_module
 
 # print(pkg_module.add(1, 2)) # ImportError: attempted relative import with no known parent package
 
-# import sys
-# sys.path.append('g:\\devData\\github') #
-# from ..package import pkg_module #报错
-# print(pkg_module.add(1, 2))
-print(__name__)  # __main__
+
 """
 注意，相对导入基于当前模块名。因为主模块名永远是 "__main__" ，
 所以如果计划将一个模块用作 Python 应用程序的主模块，那么该模块内的导入语句必须始终使用绝对导入。
 """
+# import sys
+# sys.path.append('g:\\devData\\github') #
+# from ..package import pkg_module #报错 主模块不允许使用绝对导入
+# print(pkg_module.add(1, 2))
+print(__name__)  # __main__
+
 
 print(sys.path)
 print(__name__)  # __main__

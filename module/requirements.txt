@@ -1,4 +1,15 @@
 # requirements.txt
-# 引入自己的包
-# -e .
+# 引入自己的包 -e会创建一个链接
+# -e ./xx
 # 引入第三方包
+# Flask==2.3.2
+# requests>=2.26.0
+# numpy
+# pandas<=1.5.0
+# == 表示精确的版本号。
+# >= 表示大于或等于某个版本。
+# <= 表示小于或等于某个版本。
+# 不指定版本号时，会安装最新版本。
+# 如果已经安装了依赖库可以使用 pip freeze > requirements.txt 生成文件
+
+#安装 pip install -r requirements.txtpip
