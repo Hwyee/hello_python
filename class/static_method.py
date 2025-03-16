@@ -1,5 +1,7 @@
-# 静态方法
+"""静态方法"""
 class Static:
+    """静态方法
+    """
     def __init__(self, name, age, sex) -> None:
         self.name = name
         self.age = age
@@ -7,22 +9,47 @@ class Static:
 
     @staticmethod
     def get_name():
+        """静态方法
+
+        Returns:
+            string: name
+        """
         return "static name"
 
     @staticmethod
     def get_age():
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return "static age"
 
     @staticmethod
     def get_sex():
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return "static sex"
 
     @staticmethod
     def get_all():
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return "static all"
 
     @staticmethod
     def get_all_class():
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return "static all class"
 
     @staticmethod

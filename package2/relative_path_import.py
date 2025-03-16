@@ -1,8 +1,15 @@
+"""
+测试相对导入
+"""
+
 # from ..package import pkg_module
 import sys
 import os
-# 添加项目根目录到 sys.path 文件执行的路径会自动添加到os.path中，直接执行此文件，路径就是 /xxx/hello_python/package2，所以from package是找不到的需要from ..package
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+# 添加项目根目录到 sys.path 文件执行的路径会自动添加到os.path中，
+# 直接执行此文件，路径就是 /xxx/hello_python/package2，
+# 所以from package是找不到的需要from ..package
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 print(sys.path)
 if project_root not in sys.path:
     sys.path.append(project_root)
@@ -24,45 +31,43 @@ print(__name__)  # __main__
 
 print(sys.path)
 print(__name__)  # __main__
-"""
 
-__main__ 是顶层代码运行环境的名称。“顶层代码”是指由用户指定的最先开始运行的那一个 Python 模块。之所以它是“顶层”，
-是因为它将导入程序所需的所有其它模块。有时“顶层代码”被称为应用程序的 入口点。
 
-顶层代码环境可以是：
+# __main__ 是顶层代码运行环境的名称。“顶层代码”是指由用户指定的最先开始运行的那一个 Python 模块。之所以它是“顶层”，
+# 是因为它将导入程序所需的所有其它模块。有时“顶层代码”被称为应用程序的 入口点。
 
-交互提示符的作用域：
+# 顶层代码环境可以是：
 
->>>
-__name__
-'__main__'
-作为文件参数传给 Python 解释器的 Python 模块：
+#     1.交互提示符的作用域：
 
-python helloworld.py
-Hello, world!
-与 -m 一起传给 Python 解释器的 Python 模块或包：
+#       >>>
+#       __name__
+#       '__main__'
+#   2.作为文件参数传给 Python 解释器的 Python 模块：
 
-python -m tarfile
-usage: tarfile.py [-h] [-v] (...)
-Python 解释器从标准输入中读取的 Python 代码：
+#       python helloworld.py
+#       Hello, world!
+#       与 -m 一起传给 Python 解释器的 Python 模块或包：
 
-echo "import this" | python
-The Zen of Python, by Tim Peters
+#       python -m tarfile
+#       usage: tarfile.py [-h] [-v] (...)
+#       Python 解释器从标准输入中读取的 Python 代码：
 
-Beautiful is better than ugly.
-Explicit is better than implicit.
-...
-与 -c 一起传给 Python 解释器的 Python 代码：
+#       echo "import this" | python
+#       The Zen of Python, by Tim Peters
 
-python -c "import this"
-The Zen of Python, by Tim Peters
+#       Beautiful is better than ugly.
+#       Explicit is better than implicit.
+#       ...
+#   3.与 -c 一起传给 Python 解释器的 Python 代码：
 
-Beautiful is better than ugly.
-Explicit is better than implicit.
-...
-上述每种情况中的顶层模块的 __name__ 被设为 '__main__'。
-"""
+#       python -c "import this"
+#       The Zen of Python, by Tim Peters
 
+#       Beautiful is better than ugly.
+#       Explicit is better than implicit.
+#       ...
+# 上述每种情况中的顶层模块的 __name__ 被设为 '__main__'。
 
 
 def test() -> None:

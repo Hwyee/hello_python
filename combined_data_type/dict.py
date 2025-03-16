@@ -1,4 +1,5 @@
-# 字典 无序 键是唯一的，key只能是字符串，数字，元组，值可以是任何类型
+"""字典 无序 键是唯一的，key只能是字符串，数字，元组，类等值可以是任何类型"""
+from collections import defaultdict
 
 # 创建
 dict1 = {"name": "zhangsan", "age": 18, "sex": "male", 1: 1, (1, 2): "tuple"}
@@ -52,10 +53,12 @@ for item in dict1.items():  # 遍历key和value
     print(item)
 
 # 字典的常用方法
-dict1.pop("address")  # 删除键值对
+dict1.pop("address")  # 删除键值对 必须有参数
 print(dict1)
 print(dict1.copy())  # 复制
 dict1.popitem()  # 删除最后的键值对 pop出栈
 print(dict1)
 dict1.clear()  # 清空
 print(dict1)
+
+ded = defaultdict(list)

@@ -1,9 +1,14 @@
-# 实例属性
+"""实例属性"""
+
+
 class Via:
+    """_summary_
+    """
     pass
 
 
 v = Via()
+# 给类实例赋值不存在的属性，默认不会报错
 v.a = 1
 print(v.a)
 
@@ -17,7 +22,7 @@ class Ace:
         """
         初始化函数
         """
-        self.a = a # 实例属性
+        self.a = a  # 实例属性
         self.b = b
         self.c = c
 

@@ -1,5 +1,12 @@
-# 封装
+"""
+封装
+
+"""
+
+
 class A:
+    """_summary_"""
+
     def __init__(self, name, age, sex, doom) -> None:
         self.name = name
         self._age = age  # 受保护的属性
@@ -11,6 +18,11 @@ class A:
 
     @property  # 属性装饰器 把函数调用改成属性调用
     def sex(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return self.__sex
 
     @sex.setter  # 变量修改装饰器 函数名要和property装饰器同名
@@ -44,19 +56,18 @@ print(
     a.__dict__
 )  # {'name': 'python', '_age': 18, '_A__sex': 'male', '__doom__': 'doom'}
 
-# 私有属性为什么访问不到是因为底层给你改名字了
+# 私有属性为什么访问不到是因为底层给你改名字了 这个_A__sex就是__sex属性
 print(a._A__sex)  # male
 
 print(dir(a))  # 打印属性和方法
 # 方法也是一样
 print(A.__dict__)
-"""
-{'__module__': '__main__', '__init__': <function A.__init__ at 0x0000018B70E15260>, 
-'_get_sex': <function A._get_sex at 0x0000018B70E174C0>, 
-'_A__get_doom': <function A.__get_doom at 0x0000018B70E14D60>,
-'__dict__': <attribute '__dict__' of 'A' objects>, 
-'__weakref__': <attribute '__weakref__' of 'A' objects>, '__doc__': None}
-"""
+# {'__module__': '__main__', '__init__': <function A.__init__ at 0x0000018B70E15260>,
+# '_get_sex': <function A._get_sex at 0x0000018B70E174C0>,
+# '_A__get_doom': <function A.__get_doom at 0x0000018B70E14D60>,
+# '__dict__': <attribute '__dict__' of 'A' objects>,
+# '__weakref__': <attribute '__weakref__' of 'A' objects>, '__doc__': None}
+
 print(a._A__get_doom())
 
 

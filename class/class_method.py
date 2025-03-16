@@ -1,24 +1,55 @@
-# 类方法
+"""
+类方法
+
+"""
+
+
 class Fire:
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
+
     cname = "cfire"
     cage = 999
     csex = "cmale"
 
-    def __init__(sel, name, age, sex) -> None:
-        sel.name = name
-        sel.age = age
-        sel.sex = sex
+    def __init__(self, name, age, sex) -> None:
+        self.name = name
+        self.age = age
+        self.sex = sex
 
     def get_name(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return self.name
 
     def get_age(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return self.age
 
     def get_sex(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return self.sex
 
     def get_all(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return self.name, self.age, self.sex
 
     @classmethod

@@ -1,7 +1,12 @@
-# 魔法方法 特殊方法 双下划线方法 执行一些运算操作会先查找是否实现了魔法方法
-
+"""
+magic method
+ 魔法方法 特殊方法 双下划线方法 执行一些运算操作会先查找是否实现了魔法方法
+ 
+"""
 
 class Magic:
+    """_summary_
+    """
     def __init__(self, name, age, sex) -> None:
         self.name = name
         self.age = age
