@@ -1,4 +1,4 @@
-# 正则表达式库使用
+"""正则表达式库使用"""
 import re
 
 # print(type(a'1')) # SyntaxError: invalid syntax
@@ -6,7 +6,7 @@ print(type(r"1"))  # <class 'str'>
 print(re.match("a", "b"))  # None
 print(re.match("a", "a"))  # <_sre.SRE_Match object; span=(0, 1), match='a'>
 a = {type(r"1")}
-# 匹配正则 pattern前加一个r
+# 匹配正则 pattern前加一个r 不转义
 print(re.match(r"\d+", "123"))
 
 # ^ 表示匹配开头 $ 表示匹配结尾

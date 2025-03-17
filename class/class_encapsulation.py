@@ -32,14 +32,17 @@ class A:
     @sex.deleter
     def d_sex(self):  # 删除装饰器 名字不需要和属性装饰器同名
         del self.__sex
+        print(self.__get_doom())
 
     def __get_doom(self):  # 私有方法
         return self.__doom__
 
-    def test():
-        pass
+    def test(self):
+        """_summary_
+        """
+        print(A.testAttr)
 
-    test = 1
+    testAttr = 1
 
 
 a = A("python", 18, "male", "doom")

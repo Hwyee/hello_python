@@ -38,4 +38,4 @@ print(ice.madara)  # 101
 print(ice.__dict__)  # 没有打印类属性
 print(Ice.__dict__)  # 打印类属性,和类方法 101
 
-# 类属性相当于静态变量吧
+# 类属性相当于静态变量

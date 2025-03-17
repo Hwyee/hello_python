@@ -1,8 +1,10 @@
-# socket 编程
+"""socket 编程"""
 import socket
 
 
 def main():
+    """_summary_
+    """
     tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # 创建套接字
 
@@ -16,10 +18,11 @@ def main():
         new_client_socket, client_address = tcp_server_socket.accept()
         while True:
             recv_data = new_client_socket.recv(1024)
-
+            print(f"客户端地址是{client_address}")
             if recv_data:
                 data = recv_data.decode("utf-8")
-                print("客户端发送过来的数据是%s" % data)
+                # print("客户端发送过来的数据是%s" % data)
+                print(f"客户端发送过来的数据是{data}")
                 # new_client_socket.send("收到".encode("utf-8"))
                 new_client_socket.send(recv_data)
                 if data == "exit":

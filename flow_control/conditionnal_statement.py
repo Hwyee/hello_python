@@ -1,15 +1,17 @@
-# 条件语句 一定要有缩进！！！
-if True:
+""" 条件语句 一定要有缩进！！！"""
+T = True
+F = False
+if T:
     print("True")
-elif False:
+elif F:
     print("False")
 else:
     print("else")
 print("end")
 
 # 语句嵌套
-if True:
-    if False:
+if T:
+    if F:
         print("False")
     else:
         print("else")

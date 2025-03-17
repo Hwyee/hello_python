@@ -1,4 +1,4 @@
-# 元组 元组的元素不可以修改，但是可以添加删除元素
+""" 元组 元组的元素不可以修改，但是可以添加删除元素 """
 t = ("a", 2, True, 3.14, "e")
 print(t)
 print(t[0])
@@ -9,9 +9,9 @@ t1 = ("a",)
 print(t1)
 
 # 如果不加逗号，则t2是一个字符串，此时这个括号被看成算数运算符的括号
-t2 = "a"
-print(t2)
-print(type(t2))
+T2 = "a"
+print(T2)
+print(type(T2))
 
 # 如果是空元组
 t3 = ()
@@ -55,10 +55,16 @@ print(t9.index(1))  # 0 返回该值的第一个索引
 
 # 遍历元组
 for i in t9:
-    print(i, end=" ")
+    print(i, end=" ") # 1 2 3 4 5 1 7 8 1 10
 print()
+for i in t9[::-1]:
+    print(i, end=" ") # 10 1 8 7 1 5 4 3 2 1
+print()
+
 for i in range(len(t9)):
-    print(t9[i], end=" ")
+    print(t9[i], end=" ") # 1 2 3 4 5 1 7 8 1 10
+
 print()
+# i索引 v 数值
 for i, j in enumerate(t9):
     print(i, j)

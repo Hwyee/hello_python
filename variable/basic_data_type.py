@@ -1,22 +1,22 @@
-# 整数
-num_1 = 1
-print(num_1)
-negative_num = -1
-print(negative_num)
+""" 整数"""
+NUM1 = 1
+print(NUM1)
+NEGATIVE_NUM = -1
+print(NEGATIVE_NUM)
 
 # 浮点型
-float_1 = 1.1
-print(float_1)
+FLOAT_1 = 1.1
+print(FLOAT_1)
 float_2 = round(1.1, 2)
 print(float_2)  # 1.1
 
 # 复数
-complex_1 = 1j
-print(complex_1)
+COMPLEX_1 = 1j
+print(COMPLEX_1)
 
 # 布尔类型
-bool_1 = True
-print(bool_1)
+BOOL_1 = True
+print(BOOL_1)
 
 
 # 小整数缓存池
@@ -32,7 +32,7 @@ Python的小整数池范围是固定的,包括从-5到256的所有整数。
 此外,像PyCharm这样的集成开发环境(IDE)可能会有自己的优化,可能会扩展这个范围,
 但这通常不是Python标准行为的一部分,而是IDE为了提升交互体验所做的额外工作。
 对于这些IDE扩展的具体范围,没有统一的标准,可能会因版本或配置而异,一般不需要开发者直接关注。"""
-num_1 = 100
-num_2 = 100
-print(num_1 is num_2)  # True
-print(id(num_1),"==",id(num_2))
+NUM_1 = 100
+NUM_2 = 100
+print(NUM_1 is NUM_2)  # True
+print(id(NUM_1),"==",id(NUM_2))

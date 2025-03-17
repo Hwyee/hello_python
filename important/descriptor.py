@@ -1,10 +1,14 @@
-# 描述器
+"""描述器"""
 class Descriptor:
+    """_summary_
+    """
     def __get__(self, obj, objtype):
         return "Madara"
 
 
 class A:
+    """_summary_
+    """
     name = Descriptor()
 
 

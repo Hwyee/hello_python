@@ -1,4 +1,5 @@
-# 循环语句
+"""循环语句"""
+
 print("循环语句\n" * 5)
 print(len("\n"))
 i = 0
@@ -46,11 +47,11 @@ print("continue 跳过当前循环结束")
 
 # 5. pass 占位符
 
-"""
-pass 是 Python 中的一个关键字，它在代码中起着占位符的作用，表示不执行任何操作。
-当你需要一个语句块，但暂时不想或不需要放入任何实际代码时
-python的代码块必须要有语句,就可以使用pass占位,这样就不会报错。
-"""
+
+# pass 是 Python 中的一个关键字，它在代码中起着占位符的作用，表示不执行任何操作。
+# 当你需要一个语句块，但暂时不想或不需要放入任何实际代码时
+# python的代码块必须要有语句,就可以使用pass占位,这样就不会报错。
+
 for i in range(5):
     pass
 
@@ -76,11 +77,12 @@ for i in range(5):
         print("循环语句的嵌套", i, j)
 print("循环语句的嵌套结束")
 
-"""
-python 没有类似label的语句
-"""
+
+# python 没有类似label的语句
+
 # 九九乘法表
 for i in range(1, 10):
     for j in range(1, i + 1):
-        print("%d * %d = %d" % (i, j, i * j), end="\t")
+        # print("%d * %d = %d" % (i, j, i * j), end="\t")
+        print(f"{i}*{j}={i * j}", end="\t")
     print()

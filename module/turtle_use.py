@@ -1,4 +1,4 @@
-# 画图
+""" 画图 """
 import time
 import turtle
 

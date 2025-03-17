@@ -1,4 +1,4 @@
-# random_use.py
+"""random_use.py"""
 import random
 
 # 随机小数

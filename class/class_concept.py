@@ -1,13 +1,21 @@
-# 类
+"""类"""
+
+
 class ClassConcept:
+    """ 类定义，类名首字母大写
+    """
+
     pass
 
 
-"""
-两种写法一样，默认继承的就是object,python可以多继承
-class ClassConcept(object):
+class ClassConcept1(object):
+    """
+    两种写法一样，默认继承的就是object,python可以多继承
+
+    """
+
     pass
-"""
+
 
 # 实例化
 cc = ClassConcept()

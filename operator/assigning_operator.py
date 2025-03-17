@@ -1,9 +1,9 @@
-# 赋值运算符
-a = 1
-a += 1
-print(a)
-a -= 1
-print(a)
-a *= 1
-print(a)
-a /= 1
+""" 赋值运算符 """
+A = 1
+A += 1
+print(A)
+A -= 1
+print(A)
+A *= 1
+print(A)
+A /= 1
