@@ -95,21 +95,108 @@ class Slu:
         请注意，二维数组的每一行上可以存在不同数量的元素。
         """
         dic = defaultdict(int)
-        res = [[]]
+        res = []
         for i in nums:
-            if dic[i]  >= len(res):
+            if dic[i] >= len(res):
                 res.append([])
-                res[dic[i]].append(i)
-            else:
-                res[dic[i]].append(i)
+            res[dic[i]].append(i)
             dic[i] += 1
         return res
+
+    def isMatch(self, s: str, p: str) -> bool:
+        """实现一个支持 '.' 和 '*' 的正则表达式匹配。
+
+        '.' 匹配任意单个字符
+        '*' 匹配零个或多个前面的那一个元素
+        所谓匹配，是要涵盖 整个 字符串 s 的，而不是部分字符串。
+
+        Args:
+            s (str): 字符串 s
+            p (str): 字符规律 p
+
+        Returns:
+            bool: _description_
+        """
+        n, m = len(s), len(p)
+        dp = [[False] * (m + 1) for _ in range(n + 1)]  # 使用列表推导式初始化dp数组
+
+        dp[0][0] = True
+
+        for i in range(n + 1):
+            for j in range(1, m + 1):
+                if p[j - 1] == "*":
+                    dp[i][j] = dp[i][j - 2] or (
+                        i > 0
+                        and (s[i - 1] == p[j - 2] or p[j - 2] == ".")
+                        and dp[i - 1][j]
+                    )
+                else:
+                    dp[i][j] = (
+                        i > 0
+                        and dp[i - 1][j - 1]
+                        and (s[i - 1] == p[j - 1] or p[j - 1] == ".")
+                    )
+
+        return dp[n][m]
+
+    def intToRoman(self, num: int) -> str:
+        """整数转罗马数字
+            七个不同的符号代表罗马数字，其值如下：
+            符号	值
+            I	1
+            V	5
+            X	10
+            L	50
+            C	100
+            D	500
+            M	1000
+            罗马数字是通过添加从最高到最低的小数位值的转换而形成的。将小数位值转换为罗马数字有以下规则：
+            如果该值不是以 4 或 9 开头，请选择可以从输入中减去的最大值的符号，
+            将该符号附加到结果，减去其值，然后将其余部分转换为罗马数字。
+            如果该值以 4 或 9 开头，使用 减法形式，表示从以下符号中减去一个符号，
+            例如 4 是 5 (V) 减 1 (I): IV ，9 是 10 (X) 减 1 (I)：IX。
+            仅使用以下减法形式：4 (IV)，9 (IX)，40 (XL)，90 (XC)，400 (CD) 和 900 (CM)。
+            只有 10 的次方（I, X, C, M）最多可以连续附加 3 次以代表 10 的倍数。
+            你不能多次附加 5 (V)，50 (L) 或 500 (D)。如果需要将符号附加4次，请使用
+            减法形式。
+        Args:
+            num (int): 整数
+
+        Returns:
+            str: 转换为罗马数字
+        """
+        dt = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D", 1000: "M"}
+        if num in dt:
+            return dt[num]
+        res = []
+        a = 1
+        for i in str(num)[::-1]:
+            i = int(i)
+            if i * a in dt:
+                res.append(dt[i * a])
+
+            elif i == 4 or i == 9:
+                if i == 4:
+                    res.append(dt[a] + dt[a * 5])
+                else:
+                    res.append(dt[a] + dt[a * 10])
+
+            else:
+                if i > 5:
+                    res.append(dt[a * 5] + dt[a] * (i - 5))
+                else:
+                    res.append(dt[a] * i)
+            a *= 10
+
+        return "".join(res[::-1])
+
 
 def main():
     """test"""
     sl = Slu()
     print(sl.my_atoi("   -042"))
     print(sl.diagonalPrime([[1, 2], [1, 3]]))
-
+    print(sl.isMatch("aa", "*"))
+    print(sl.intToRoman(1994))
 
 main()
