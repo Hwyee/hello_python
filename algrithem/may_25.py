@@ -1,7 +1,8 @@
 """may3_25"""
 
-from collections import defaultdict
+from collections import defaultdict, deque
 from typing import List
+from sortedcontainers import SortedList
 
 
 class Slu:
@@ -10,7 +11,7 @@ class Slu:
     """
 
     def my_atoi(self, s: str) -> int:
-        """
+        """Medium
         请你来实现一个 myAtoi(string s) 函数，使其能将字符串转换成一个 32 位有符号整数。
         函数 myAtoi(string s) 的算法如下：
         空格：读入字符串并丢弃无用的前导空格（" "）
@@ -44,7 +45,8 @@ class Slu:
         return -res
 
     def diagonalPrime(self, nums: list[list[int]]) -> int:
-        """如果某个整数大于 1 ，且不存在除 1 和自身之外的正整数因子，则认为该整数是一个质数。
+        """Easy
+        如果某个整数大于 1 ，且不存在除 1 和自身之外的正整数因子，则认为该整数是一个质数。
         如果存在整数 i ，使得 nums[i][i] = val 或者 nums[i][nums.length - i - 1]= val ，
         则认为整数 val 位于 nums 的一条对角线上。
         nums.length = nums[i].length
@@ -65,7 +67,8 @@ class Slu:
         return res
 
     def judge_prime_num(self, num: int) -> bool:
-        """判断是否为质数
+        """
+        判断是否为质数
 
         Args:
             num (int):  number
@@ -82,7 +85,8 @@ class Slu:
 
     # typing.List 是3.9以前用于类型检查的,因为3.9以前不支持list[T]
     def findMatrix(self, nums: List[int]) -> List[List[int]]:
-        """整数数组 nums 。请你创建一个满足以下条件的二维数组：
+        """Medium
+        整数数组 nums 。请你创建一个满足以下条件的二维数组：
         二维数组应该 只 包含数组 nums 中的元素。
         二维数组中的每一行都包含 不同 的整数。
         二维数组的行数应尽可能 少 。
@@ -104,7 +108,8 @@ class Slu:
         return res
 
     def isMatch(self, s: str, p: str) -> bool:
-        """实现一个支持 '.' 和 '*' 的正则表达式匹配。
+        """Hard
+        实现一个支持 '.' 和 '*' 的正则表达式匹配。
 
         '.' 匹配任意单个字符
         '*' 匹配零个或多个前面的那一个元素
@@ -140,7 +145,8 @@ class Slu:
         return dp[n][m]
 
     def intToRoman(self, num: int) -> str:
-        """整数转罗马数字
+        """Medium
+        整数转罗马数字
             七个不同的符号代表罗马数字，其值如下：
             符号	值
             I	1
@@ -190,6 +196,86 @@ class Slu:
 
         return "".join(res[::-1])
 
+    def romanToInt(self, s: str) -> int:
+        """Easy
+        通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：
+
+        I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。
+        X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。
+        C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
+
+        Args:
+            s (str): 罗马数字
+
+        Returns:
+            int: 整数
+        """
+        roman_dict = {
+            "I": 1,
+            "V": 5,
+            "X": 10,
+            "L": 50,
+            "C": 100,
+            "D": 500,
+            "M": 1000,
+        }
+        res = 0
+        for i, v in enumerate(s):
+            if i < len(s) - 1:
+                # 当前元素小于下一个元素，则当前元素为负数
+                if roman_dict[v] < roman_dict[s[i + 1]]:
+                    res -= roman_dict[v]
+                else:
+                    res += roman_dict[v]
+        return res + roman_dict[s[-1]]
+
+    def minReverseOperations(self, n, p, banned, k) -> List[int]:
+        """ Hard
+        你可以对 arr 进行 若干次 操作。一次操作中，你选择大小为 k 的一个 子数组 ，
+        并将它 翻转 。在任何一次翻转操作后，你都需要确保 arr 中唯一的 1
+        不会到达任何 banned 中的位置。换句话说，arr[banned[i]] 始终 保持 0 。
+
+        请你返回一个数组 ans ，对于 [0, n - 1] 之间的任意下标 i ，
+        ans[i] 是将 1 放到位置 i 处的 最少 翻转操作次数，
+        如果无法放到位置 i 处，此数为 -1 。
+        子数组 指的是一个数组里一段连续 非空 的元素序列。
+        对于所有的 i ，ans[i] 相互之间独立计算。
+        将一个数组中的元素 翻转 指的是将数组中的值变成 相反顺序 。
+
+        :type n: int 整数
+        :type p: int 范围 [0, n - 1] 以内的整数
+        他们表示长度为 n 且下标从 0 开始的数组
+            数组中除了下标为 p 处是 1 以外，其他所有数都是 0
+        :type banned: List[int]  整数数组 它包含数组中的一些位置。
+        banned 中第 i 个位置表示 arr[banned[i]] = 0 ，题目保证 banned[i] != p 。
+        :type k: int 整数
+        :rtype: List[int]
+        """
+
+        ban = set(banned) | {p}
+        indices = [SortedList(), SortedList()]  # import sortedcontainers
+        for i in range(n):
+            if i not in ban:
+                indices[i % 2].add(i)
+        indices[0].add(n)  # 哨兵，下面无需判断越界
+        indices[1].add(n)
+
+        ans = [-1] * n
+        ans[p] = 0  # 起点
+        q = deque([p])
+        while q:
+            i = q.popleft()
+            # indices[mn % 2] 中的从 mn 到 mx 的所有下标都可以从 i 翻转到
+            mn = max(i - k + 1, k - i - 1)
+            mx = min(i + k - 1, n * 2 - k - i - 1)
+            sl = indices[mn % 2]
+            idx = sl.bisect_left(mn)
+            while sl[idx] <= mx:
+                j = sl.pop(idx)  # 注意 pop(idx) 会使后续元素向左移，不需要写 idx += 1
+                ans[j] = ans[i] + 1  # 移动一步
+                q.append(j)
+        return ans
+
 
 def main():
     """test"""
@@ -198,5 +284,6 @@ def main():
     print(sl.diagonalPrime([[1, 2], [1, 3]]))
     print(sl.isMatch("aa", "*"))
     print(sl.intToRoman(1994))
+
 
 main()
