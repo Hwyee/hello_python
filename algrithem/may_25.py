@@ -230,7 +230,7 @@ class Slu:
         return res + roman_dict[s[-1]]
 
     def minReverseOperations(self, n, p, banned, k) -> List[int]:
-        """ Hard
+        """Hard
         你可以对 arr 进行 若干次 操作。一次操作中，你选择大小为 k 的一个 子数组 ，
         并将它 翻转 。在任何一次翻转操作后，你都需要确保 arr 中唯一的 1
         不会到达任何 banned 中的位置。换句话说，arr[banned[i]] 始终 保持 0 。
@@ -275,6 +275,93 @@ class Slu:
                 ans[j] = ans[i] + 1  # 移动一步
                 q.append(j)
         return ans
+
+    def maximumOr(self, nums: List[int], k: int) -> int:
+        """每一次操作中，你可以选择一个数并将它乘 2 。
+
+        你最多可以进行 k 次操作，请你返回 nums[0] | nums[1] | ... | nums[n - 1] 的最大值。
+
+        a | b 表示两个整数 a 和 b 的 按位或 运算。
+
+        Args:
+            nums (List[int]): 下标从 0 开始长度为 n 的整数数组 nums
+            k (int): 整数 k
+
+        Returns:
+            int: _description_
+        """
+        all_or = fixed = 0
+        for x in nums:
+            # 如果在计算 all_or |= x 之前，all_or 和 x 有公共的 1
+            # 那就意味着有多个 nums[i] 在这些比特位上都是 1
+            fixed |= all_or & x  # 把公共的 1 记录到 fixed 中
+            all_or |= x  # 所有数的 OR
+        # all_or ^ x相当于"除去了" x 的数，但是仍然有公共的 1所以还要加上公共的1
+        # 最后再加上x<<k，比较哪个值最大
+        return max((all_or ^ x) | fixed | (x << k) for x in nums)
+
+    def isPalindrome(self, x: int) -> bool:
+        """如果 x 是一个回文整数，返回 true ；否则，返回 false 。
+
+        回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+
+        例如，121 是回文，而 123 不是。
+        Args:
+            x (int): 整数 x
+
+        Returns:
+            bool: _description_
+        """
+        if x < 0:
+            return False
+        x = str(x)
+        return x == x[::-1]
+
+    def canBeValid(self, s: str, locked: str) -> bool:
+        """一个括号字符串是只由 '(' 和 ')' 组成的 非空 字符串。如果一个字符串满足下面
+                任意 一个条件，那么它就是有效的：
+
+        字符串为 ().
+        它可以表示为 AB（A 与 B 连接），其中A 和 B 都是有效括号字符串。
+        它可以表示为 (A) ，其中 A 是一个有效括号字符串。
+        给你一个括号字符串 s 和一个字符串 locked ，两者长度都为 n 。
+
+
+                Args:
+                    s (str): 括号字符串 s
+                    locked (str): locked 是一个二进制字符串，只包含 '0' 和 '1' 。
+                对于 locked 中 每一个 下标 i ：
+
+                如果 locked[i] 是 '1' ，你 不能 改变 s[i] 。
+                如果 locked[i] 是 '0' ，你 可以 将 s[i] 变为 '(' 或者 ')' 。
+                Returns:
+                    bool: 如果你可以将 s 变为有效括号字符串，请你返回 true ，否则返回 false 。
+
+        """
+        # 如果长度为奇数，直接返回false
+        if len(s) % 2 != 0:
+            return False
+        # 维护一个最大值和最小值区间 左括号都+1,右括号都-1,遇到locked[i]=='0'则mn减1,mx加1
+        mn, mx = 0, 0
+        for i, lo in zip(s, locked):
+            if lo == "0":
+                mn -= 1
+                mx += 1
+            else:
+                if i == "(":
+                    mn += 1
+                    mx += 1
+                else:
+                    mx -= 1
+                    mn -= 1
+            # 特殊情况 最大值为负值时 说明在这个区间内已经成立不了了，直接返回false
+            if mx < 0:
+                return False
+            # 如果最小值为负数，则将最小值维护成1，因为区间内的数要么全是奇数，要么全是偶数
+            # 此时最小值非负数为1
+            if mn < 0:
+                mn = 1
+        return mn == 0
 
 
 def main():
