@@ -5,6 +5,19 @@ from typing import List
 from sortedcontainers import SortedList
 
 
+class TreeNode(object):
+    """树结构
+
+    Args:
+        object (_type_): _description_
+    """
+
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
 class Slu:
     """
     slu
@@ -359,9 +372,69 @@ class Slu:
                 return False
             # 如果最小值为负数，则将最小值维护成1，因为区间内的数要么全是奇数，要么全是偶数
             # 此时最小值非负数为1
+            # 其实这两种情况对应这左右两种边界情况。比如s[0] = ')'，或s[len(s)-1] = '('
+            # 此时都不能满足题目要求的有效字符括号
             if mn < 0:
                 mn = 1
         return mn == 0
+
+    def countPrefixes(self, words, s):
+        """
+        给你一个字符串数组 words 和一个字符串 s ，
+        其中 words[i] 和 s 只包含 小写英文字母 。
+
+        请你返回 words 中是字符串 s 前缀 的 字符串数目 。
+
+        一个字符串的 前缀 是出现在字符串开头的子字符串。
+        子字符串 是一个字符串中的连续一段字符序列。
+        :type words: List[str]
+        :type s: str
+        :rtype: int
+        """
+        res = 0
+        for i in words:
+            if len(i) > len(s):
+                continue
+            if s[0 : len(i)] == i:
+                res += 1
+        return res
+
+    def leafSimilar(self, root1, root2):
+        """
+                请考虑一棵二叉树上所有的叶子，这些叶子的值按从左到右的顺序排列形成一个 叶值序列 。
+
+        就是叶子节点，从左向右排序
+
+        举个例子，如上图所示，给定一棵叶值序列为 (6, 7, 4, 9, 8) 的树。
+
+        如果有两棵二叉树的叶值序列是相同，那么我们就认为它们是 叶相似 的。
+
+        如果给定的两个根结点分别为 root1 和 root2 的树是叶相似的，则返回 true；否则返回 false 。
+
+                :type root1: Optional[TreeNode]
+                :type root2: Optional[TreeNode]
+                :rtype: bool
+        """
+        res1, res2 = [], []
+
+        self.leaf(root1, res1)
+        self.leaf(root2, res2)
+        return res1 == res2
+
+    def leaf(self, root, res):
+        """dfs
+
+        Args:
+            root (_type_): _description_
+            res (_type_): _description_
+        """
+        if root is None:
+            return
+        if not root.left and not root.right:
+            res.append(root.val)
+        else:
+            self.leaf(root.left, res)
+            self.leaf(root.right, res)
 
 
 def main():
@@ -371,6 +444,22 @@ def main():
     print(sl.diagonalPrime([[1, 2], [1, 3]]))
     print(sl.isMatch("aa", "*"))
     print(sl.intToRoman(1994))
+    print(sl.canBeValid("(()()()())", "0001110010"))
+    print(sl.countPrefixes(["a", "b", "c", "ab", "bc", "abc"], "abc"))
+    print(
+        sl.leafSimilar(
+            TreeNode(
+                3,
+                TreeNode(5, TreeNode(6), TreeNode(2, TreeNode(7), TreeNode(4))),
+                TreeNode(1, TreeNode(9), TreeNode(8)),
+            ),
+            TreeNode(
+                3,
+                TreeNode(5, TreeNode(6), TreeNode(2, TreeNode(7), TreeNode(4))),
+                TreeNode(1, TreeNode(9), TreeNode(8)),
+            ),
+        )
+    )
 
 
 main()
